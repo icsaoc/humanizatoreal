@@ -18,10 +18,16 @@ scopul — nu cuvintele-titlu sau sensurile ca fapte lexicale.
 - Ion Neculce — Letopisețul + O samă de cuvinte (Wikisource).
 - Ion Creangă — Amintiri din copilărie (Wikisource; ed. Humanitas cu glosar).
 
-## C · Mod stradal
-- `argou-chisinau.md`: compilație de internet, **sursă neserioasă**, marcată ca atare; opt-in.
+## C · Glas contemporan
+- TV8 și PRO TV Chișinău. Vezi [registrul cu locatori](corpus-contemporan.md).
+
+## D · Mod stradal
+- `argou-chisinau.md`: compilație de internet, **sursă neserioasă**, inventar inactiv în 2.0.0, fără intrări aprobate.
 
 ## Notă critică
 DMR e o sursă controversată (mulți lingviști îl văd ca lexicon de arhaisme și
 regionalisme ale graiului moldovenesc, nu limbă separată). Pentru skill contează
 lexicul și tonul, nu teza politică.
+
+## Inventar administrativ
+- `admin-stil.md`: reformulări fără dovezi de uz documentate, inactive în 2.0.0. La `stil=admin`, anunță indisponibilitatea înainte de a oferi curățarea de bază.

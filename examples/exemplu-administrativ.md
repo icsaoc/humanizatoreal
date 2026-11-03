@@ -7,9 +7,8 @@
 > revoluționare. În concluzie, succes tuturor!
 
 ## After (humanized)
-> Implementăm trei măsuri concrete pentru eficiență. Rezultatele le raportăm la
-> finalul lunii.
+> Vom lua măsuri pentru a crește eficiența.
 
 ## Tipare scoase
-2 (hedging), 4 (rezumat final), 8 (superlative goale), 14 (tranziții clișeu),
+1 (fluff de deschidere), 4 (rezumat final), 8 (superlative goale), 14 (tranziții clișeu),
 19 (adverbe de umplutură), 25 (final motivațional).

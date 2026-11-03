@@ -2,16 +2,16 @@ cff-version: 1.2.0
 message: "If you use this concept or software, please cite it as below."
 title: "Omenizator — Moldovan-language text humanizer"
 abstract: >-
-  An original skill that removes AI writing patterns and rewrites text into
-  authentic Moldovan using a curated subset of the DMR / Vasile Stati lexicon.
+  An original skill that removes AI writing patterns.
+  The DMR / Vasile Stati lexicon is retained as an inactive inventory.
 type: software
 authors:
   - name: XAOC
     email: iam@xaoc.bio
-version: 1.2.0
+version: 2.0.0
+date-released: 2026-11-03
 license: MIT
-date-released: 2026-06-12
-repository-code: "https://github.com/comebrox/humanizatoreal"
+repository-code: "https://github.com/icsaoc/humanizatoreal"
 keywords:
   - humanizer
   - moldovan

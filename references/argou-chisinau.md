@@ -1,11 +1,14 @@
-# Argou chișinăuian — mod stradal (opt-in)
+# Filtru de utilizare
 
-<!--
-Registru: argou urban chișinăuian, puternic rusificat. Compilație de internet,
-SURSĂ NESERIOASĂ — marcată ca atare. Aplicat NUMAI la invocare explicită
-(/omenizator --argou). Intrările marcate ⚠ sînt vulgare/sexuale și sînt
-EXCLUSE IMPLICIT din output; intră doar cînd utilizatorul cere explicit registru licențios.
--->
+Intrările de mai jos sunt o compilație de internet fără atestări validate. Activează o intrare doar după validarea
+sensului în registrul de proveniență și numai cu opțiunea --argou. Exclude
+insultele țintite, epitetele discriminatorii și amenințările din completările
+agentului. Vulgaritatea nețintită și conținutul sexual marcat ⚠ cer confirmare explicită separată, pe lângă atestare. Păstrează citatele
+exacte din input.
+
+# Inventar de argou chișinăuian — inactiv în 2.0.0
+
+⚠ semnalează conținut sensibil pentru revizuire. Se aplică filtrul de mai sus.
 
 ## A
 - a abaldi — a rămâne cu gura căscată

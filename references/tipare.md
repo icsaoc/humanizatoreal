@@ -1,5 +1,7 @@
 # Tipare AI — 29 de semne de scriere artificială
 
+Catalog **1.0.0**. ID-urile rămân stabile. Vezi CONTRIBUTING.md.
+
 Fiecare tipar: **semn → remediu**. Folosit la pasul 2 din `SKILL.md`.
 
 1. **Fluff de deschidere** („Este important de menționat că...") → taie, intră direct.
@@ -17,7 +19,7 @@ Fiecare tipar: **semn → remediu**. Folosit la pasul 2 din `SKILL.md`.
 13. **Bold:colon mecanic** în fiecare bullet → doar unde ajută.
 14. **Tranziții clișeu** („Mai mult decât atât", „Pe de altă parte") → leagă logic.
 15. **„a explora în profunzime / delve"** → spune ce faci, simplu.
-16. **Ton corporatist neutru** fără voce → adaugă glas moldovenesc.
+16. **Ton corporatist neutru** fără voce → adaugă o voce concretă, fără lexic inactiv.
 17. **Calc englezesc** („la sfârșitul zilei", „a face sens") → echivalent firesc.
 18. **Definiții evidente** ale termenilor comuni → presupune cititorul competent.
 19. **Adverbe de umplutură** („cu adevărat", „efectiv") → taie.

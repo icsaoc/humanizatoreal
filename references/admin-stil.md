@@ -1,13 +1,9 @@
-# admin-stil.md — Strat administrativ moldovenesc (NU din DMR)
+# Inventar de reformulări administrative — inactiv în 2.0.0
 
-> Separat de DMR. Nu e lexic rural/istoric, ci uz real birocratic din Moldova 2020-2026.
-> Se aplică DOAR în mod tehnic-curat când utilizatorul cere explicit `stil=admin`.
-> Scop: să sune a instituție din Chișinău, nu a traducere București.
+> Nu sunt documentate dovezi de uz pentru reformulările de mai jos. Activarea cere dovezi pe sens și aprobarea unui revizor independent, la același standard ca lexicul.
+> La cererea `stil=admin`, explică indisponibilitatea înainte de a oferi curățarea stilistică de bază.
 
-## Principiu
-Nu introducem cuvinte de tip Creangă pe texte SIA. Doar reformulăm ticsuri administrative greoaie în forme mai directe, folosite în comunicatele reale din MD.
-
-## Glosar administrativ (RO birocratic greoi → MD administrativ viu)
+## Reformulări candidate
 
 | declanșator (RO birocratic) | reformulare (MD admin) | notă |
 |---|---|---|
@@ -39,7 +35,7 @@ Nu introducem cuvinte de tip Creangă pe texte SIA. Doar reformulăm ticsuri adm
 | a fost efectuată actualizarea | am actualizat / am pus în producție | subiect explicit |
 | funcționalitate de emitere certificat | emiterea certificatelor / cum se emit certificatele | substantivizare excesivă |
 
-## Exemple transformare
+## Exemple istorice ale inventarului inactiv
 
 **Înainte (birocratic + AI):**
 > În vederea asigurării funcționalului aferent emiterii certificatelor, se va purcede la plasarea unei actualizări în SIA CCDE.
@@ -54,12 +50,11 @@ Nu introducem cuvinte de tip Creangă pe texte SIA. Doar reformulăm ticsuri adm
 > Vă anunțăm că partea care ține de resident_type va fi disponibilă.
 
 ## Reguli aplicare
-1. Aplică DOAR după `detect_technical_register() == True`
+1. Activarea cere dovezi și aprobare independentă.
 2. Niciodată nu amesteca cu DMR (nu pune `păpușoi` în text despre IBAN)
 3. Păstrează termenii tehnici exacți: JSON, IBAN, SIA, CCDE, resident_type, endpoint — nu-i traduce
 4. Scurtează propozițiile >22 cuvinte
 5. Subiect explicit: cine face ce (echipa, banca, SIA)
 
 ## Când NU aplici
-- Text narativ / cotidian / caracter → folosește DMR
-- Text tehnic dar utilizatorul NU a cerut `stil=admin` → rămâi pe tehnic-curat simplu (doar curățare AI, fără reformulări admin)
+- Inventarul rămâne inactiv în 2.0.0, inclusiv la cererea `stil=admin`.

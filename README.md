@@ -2,15 +2,16 @@
 
 # 🪶 Omenizator
 
-**Humanizer de text în limba moldovenească**  
-Elimină tiparele de scriere AI și rescrie cu lexic autentic (DMR / Vasile Stati + regionalisme vii).
+**Humanizer de text în limba moldovenească · lexic inactiv**
+
+Curăță tiparele de scriere AI și ajustează ritmul. Inventarul lexical rămâne inactiv până la aprobarea independentă pe sens.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.4.0-blue.svg)](CHANGELOG.md)
-[![Lexicon](https://img.shields.io/badge/lexicon-~280%20termeni-orange.svg)](references/lexicon-subset.md)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](CHANGELOG.md)
+[![Lexicon](https://img.shields.io/badge/inventar-154%20r%C3%A2nduri-orange.svg)](references/lexicon-subset.md)
 [![Skill](https://img.shields.io/badge/type-Agent%20Skill-purple.svg)](SKILL.md)
 
-**RO → MD** · **Zero forțare** · **Audit obligatoriu**
+**Zero forțare** · **Audit obligatoriu**
 
 </div>
 
@@ -18,48 +19,51 @@ Elimină tiparele de scriere AI și rescrie cu lexic autentic (DMR / Vasile Stat
 
 ## Ce face
 
-Primește un text care „miroase a AI” și îl întoarce uman: fără fluff, cu subiect explicit, ton moldovenesc și surse reale.
+Primește un text care „miroase a AI” și îl întoarce uman: fără fluff, cu subiect explicit, cu atenție la ritm și registru.
 
 | Înainte (AI) | După (omenizat) |
 |---|---|
-| „Este important de menționat că soluția oferă o serie de beneficii.” | „Soluția aduce trei câștiguri concrete.” |
-| „În cadrul acestui proces vom proceda la analiza…” | „Hai să analizăm, pe rând.” |
+| „Este important de menționat că soluția oferă o serie de beneficii.” | „Soluția are mai multe avantaje.” |
+| „În cadrul acestui proces vom proceda la analiza…” | „Vom analiza…” |
 
-**Lexicon actual:** Master Index v3.1.0 — ~280 termeni unici (DMR + regionalisme vii), direcție `declanșator RO comun → termen MD`, cu regulă strictă de non-forțare.
+**Inventar:** Master Index v3.1.0 are 154 de rânduri. Zero perechi termen–sens sunt aprobate pentru substituție. **BREAKING în 2.0.0:** substituțiile cer aprobarea independentă și potrivire de registru.
 
 ---
 
 ## Instalare
 
+Comanda devine utilizabilă după publicarea tagului. Pentru descoperirea skill-urilor în Codex, vezi [documentația oficială](https://learn.chatgpt.com/docs/build-skills).
+
 ```bash
-git clone https://github.com/comebrox/humanizatoreal.git
-# plasează skill-ul în directorul de skills al agentului tău
+git clone --branch v2.0.0 https://github.com/icsaoc/humanizatoreal.git "$HOME/.agents/skills/omenizator"
 ```
 
 ## Utilizare
 
 ```bash
-/omenizator                 # mod literar (implicit, lexic DMR)
-/omenizator --argou         # adaugă registru stradal chișinăuian (opt-in)
+/omenizator                 # mod literar implicit
 ```
+
+Dacă ceri `stil=admin`, skill-ul explică indisponibilitatea stratului înainte de a oferi curățarea de bază. Pentru a reproduce evaluarea, vezi [rularea benchmarkului](benchmark/README.md). Consultă [proveniența lexicală](references/provenienta-lexicala.md), [corpusul de control](references/corpus-contemporan.md) și [benchmarkul pilot](references/evaluare.md).
 
 **Procedură fixă:**  
 1. Citește textul (+ mostră de glas, dacă există)  
 2. Detectează tiparele AI (29 semne)  
-3. Rescrie (elimină tipare + injectează MD doar la potrivire naturală)  
+3. Rescrie păstrând sensul și registrul
 4. Livrează **tabel de audit obligatoriu**
 
 ---
 
 ## Moduri
 
-| Mod | Implicit | Sursă | Conținut sensibil |
-|---|---|---|---|
-| **Literar** | ✅ Da | DMR / Stati + regionalisme | — |
-| **Stradal** (`--argou`) | ❌ Opt-in | Compilație de internet | Intrările ⚠ excluse implicit |
+| Mod | Comportament în 2.0.0 | Intrări lexicale eligibile |
+|---|---|---|
+| Literar implicit sau istoric la cerere | Curățarea tiparelor și ritm adaptat | 0 |
+| Stradal (`--argou`) | Inactiv. Compilație de internet fără intrări aprobate | 0 |
+| Administrativ (`stil=admin`) | Inactiv. Anunță indisponibilitatea înainte de a oferi curățarea de bază | 0 reformulări administrative active |
 
 **Densitate lexicală:** max. ~1 termen MD la 150 cuvinte.  
-Pe texte tehnice / administrative densitatea e intenționat aproape zero — omenizarea se face prin ritm și curățarea tiparelor AI.
+Pragul se aplică după activarea unei perechi. În starea actuală nu se aplică substituții.
 
 ---
 
@@ -67,16 +71,25 @@ Pe texte tehnice / administrative densitatea e intenționat aproape zero — ome
 
 ```
 humanizatoreal/
-├─ SKILL.md                 # procedura + YAML frontmatter (v1.4.0)
+├─ SKILL.md                 # procedura + YAML frontmatter (v2.0.0)
 ├─ README.md
 ├─ LICENSE · NOTICE · AUTHORS · CITATION.cff
 ├─ CHANGELOG.md · CONTRIBUTING.md
+├─ benchmark/               # pregătire și scor A/B
+│  ├─ README.md
+│  └─ evaluate.py
+├─ tests/                   # teste benchmark
+│  └─ test_evaluate.py
 ├─ references/
 │  ├─ tipare.md             # 29 tipare AI
 │  ├─ lexicon-subset.md     # Master Index v3.1.0 (canonic)
 │  ├─ glosar-dmr.md         # pointer → lexicon-subset.md
-│  ├─ argou-chisinau.md     # mod stradal (opt-in)
+│  ├─ argou-chisinau.md     # inventar stradal inactiv
 │  ├─ corpus-glas.md        # mostre de ritm (Neculce / Creangă)
+│  ├─ admin-stil.md
+│  ├─ provenienta-lexicala.md
+│  ├─ corpus-contemporan.md
+│  ├─ evaluare.md
 │  └─ surse.md
 └─ examples/
    ├─ exemplu-dmr.md
@@ -97,10 +110,10 @@ humanizatoreal/
 
 ## Autor & originalitate
 
-**Omenizator** este un concept original al **XAOC** (2026) — humanizer moldovenesc care combină eliminarea tiparelor AI cu lexicul DMR / Vasile Stati. La momentul creării nu exista un echivalent public.
+**Omenizator** este un concept original al **XAOC** (2026) — humanizer moldovenesc care elimină tiparele AI și păstrează lexicul DMR / Vasile Stati ca inventar inactiv.
 
 - Autor: **XAOC** · iam@xaoc.bio  
-- Repo: https://github.com/comebrox/humanizatoreal
+- Repo: https://github.com/icsaoc/humanizatoreal
 
 Dacă folosești sau construiești pe această idee, citează-o (vezi [CITATION.cff](CITATION.cff)).
 
@@ -111,7 +124,7 @@ Dacă folosești sau construiești pe această idee, citează-o (vezi [CITATION.
 | Componentă | Licență |
 |---|---|
 | Cod & logică (`SKILL.md`) | [MIT](LICENSE) |
-| Date de referință & documentație (`references/`, README) | CC BY-SA 4.0 |
+| Date de referință & documentație (`references/`, README) | CC BY-SA 4.0 pentru contribuțiile proprii, inclusiv uz comercial în condițiile licenței |
 | Surse lexicale terțe (Stati etc.) | Drepturile rămân ale autorilor originali — vezi [surse.md](references/surse.md) |
 
 ---

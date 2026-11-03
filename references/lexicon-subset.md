@@ -1,16 +1,18 @@
-# Lexicon DMR — Master Index v3.1.0 (Production)
+# Lexicon DMR — Master Index v3.1.0 (inventar)
 
-> **Scop:** Motor lexical pentru injectarea autenticității moldovenești în textele standard (RO), prin substituție semantică controlată (`declanșator RO` → `termen MD`).
-> **Sursă Primară:** *Dicționar moldovenesc-românesc* (Vasile Stati), Ed. I (2003) & Ed. II (2011) + regionalisme vii din grupuri publice 2024-2026.
+> **Scop:** Inventar pentru evaluarea unor substituții semantice (`declanșator RO` → `termen MD`).
+> **Sursă Primară:** *Dicționar moldovenesc-românesc* (Vasile Stati), Ed. I (2003) & Ed. II (2011) și intrări din liste de lucru cu proveniență de stabilit.
 > **Autoritate:** XAOC, 2026. Selecția și reformularea notelor de uzaj sînt contribuție originală; sensurile lexicale rămîn fapte lexicale ale surselor.
-> **Statut:** ~280 termeni unici, validați, fără duplicate RO=MD, fără generice inutile.
+> **Inventar public:** 154 de rânduri. Eligibilitatea se stabilește separat pe sens.
 > **Țintă:** 350–400 (Lot 4+ în progres).
+
+> Pentru eligibilitate, vezi [proveniența lexicală](provenienta-lexicala.md).
 
 ## Protocol de Utilizare (Pentru Agentul de Rescriere)
 
 1. **Direcția Fluxului:** Căutarea se face exclusiv după coloana **`declanșator (RO comun)`**. Nu căuta termenul MD în textul sursă.
 2. **Matching Semantic:** Înlocuirea se face DOAR dacă sensul contextului din textul RO se potrivește perfect cu nota de uzaj a termenului MD.
-   - *Exemplu Corect:* Text: "Se uita la stele." → Declanșator: "a privi" → Termen MD: `a căta` (Valid, registru poetic/folcloric).
+   - *Exemplu Corect:* Text: "Se uita la stele." → Declanșator: "a privi" → Termen MD: `a căta` (exemplu de potrivire semantică; intrarea rămâne inactivă fără aprobare).
    - *Exemplu Incorect:* Text: "Analiza datele." → Declanșator: "a privi" → Termen MD: `a căta` (Invalid, registru tehnic/neutru).
 3. **Regula Non-Forțării:** Dacă niciun declanșator nu se potrivește natural, **nu** insera termeni MD artificial. Păstrează textul RO curat. Omenizarea prin ritm și structură (`corpus-glas.md`) are prioritate în fața lexicului forțat.
 4. **Densitate:** Max. ~1 termen MD la 150 cuvinte de output. Text tehnic/administrativ → densitate aproape zero.
@@ -159,7 +161,7 @@
 | dregător peste un ținut/cetate | pîrcălab | istoric; context medieval | DMR Ed. II, prefață |
 | mare dregător militar | portar de Suceava | istoric | DMR Ed. II, prefață |
 
-## 5. Regionalisme Vii (Bonus din grupuri publice 2024-2026)
+## 5. Regionalisme din liste de lucru
 
 | declanșator (RO comun) | termen (md) | notă de uzaj | sursă |
 |---|---|---|---|

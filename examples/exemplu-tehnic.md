@@ -6,9 +6,7 @@
 > acest lucru face sens pentru orice echipă.
 
 ## After (humanized)
-> Soluția scalează, ține la sarcină mare și răspunde rapid. Pentru o echipă mică,
-> asta înseamnă mai puțină mentenanță.
+> Soluția propusă aduce beneficii de scalabilitate, fiabilitate și performanță. Are sens pentru orice echipă.
 
 ## Tipare scoase
-9 (subiect pasiv), 3 (regula lui trei forțată), 23 („iată câteva"),
-17 (calc englezesc), 15 (limbaj vag).
+9 (subiect pasiv), 23 („iată câteva"), 17 (calc englezesc).

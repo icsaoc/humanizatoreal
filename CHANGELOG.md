@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented here.
 
+## [2.0.0] - 2026-11-03
+
+- Cifra istorică «~280» nu este reconciliată cu cele 154 de rânduri publice. Afirmația «regionalisme vii» din istoricul inventarului nu este susținută de atestări documentate.
+- Stratul administrativ este inactiv până la aprobarea independentă a dovezilor de uz; `stil=admin` semnalează indisponibilitatea înainte de a oferi curățarea de bază.
+- **BREAKING (2.0.0)** — substituțiile cer aprobarea independentă pe sens și compatibilitate cu modul. Inventarele fără intrări aprobate rămân inactive.
+- Proveniență lexicală, corpus de control și benchmark pilot.
+- Catalog versionat, review comunitar și filtru de argou.
+- Instalare la tag și clarificări de licențiere.
+
 ## [1.4.1] - 2026-08-13
 ### Added
 - `references/admin-stil.md` — strat administrativ moldovenesc (separat de DMR).

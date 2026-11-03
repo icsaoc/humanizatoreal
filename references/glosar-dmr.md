@@ -6,8 +6,8 @@ Sursa canonică de lexic pentru humanizer este acum:
 
 Acolo se află:
 - direcția corectă de căutare (`declanșator RO comun → termen md`)
-- ~280 termeni unici, curățați
+- 154 de rânduri în inventarul public
 - protocol de matching semantic + densitate + non-forțare
-- regionalisme vii + selecție din DMR Vol.1+2
+- liste de lucru și selecție din DMR, fără substituții active
 
 Nu mai folosi listele vechi. Orice referință veche la „glosar-dmr.md” se redirecționează către `lexicon-subset.md`.
