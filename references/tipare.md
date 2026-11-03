@@ -1,11 +1,11 @@
 # Tipare AI — 29 de semne de scriere artificială
 
-Catalog **1.0.0**. ID-urile rămân stabile. Vezi CONTRIBUTING.md.
+Catalog **1.0.1**. ID-urile rămân stabile. Vezi CONTRIBUTING.md.
 
 Fiecare tipar: **semn → remediu**. Folosit la pasul 2 din `SKILL.md`.
 
 1. **Fluff de deschidere** („Este important de menționat că...") → taie, intră direct.
-2. **Hedging excesiv** („ar putea", „posibil", „în general") → afirmă sau elimină.
+2. **Hedging excesiv** (ezitări stivuite: „este posibil să poată", „în general") → taie ezitarea în plus. Păstrează posibilitatea reală, obligația, condiția și negația.
 3. **Regula lui trei forțată** (mereu trei elemente) → folosește cîte cere ideea.
 4. **Rezumat final inutil** („În concluzie...") → scoate dacă nu adaugă nimic.
 5. **Em-dash în exces** → variază punctuația.

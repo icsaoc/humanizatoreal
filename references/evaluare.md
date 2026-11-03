@@ -14,7 +14,8 @@ modelul, parametrii, versiunea catalogului și outputul brut.
 
 Trei cititori locali independenți văd originalul și candidatul în ordine
 randomizată, fără etichete. Notează preferința de naturalețe (A/B/egal)
-și separat potrivirea de registru. Un revizor verifică fidelitatea cu sursa.
+și separat potrivirea de registru. Controalele curate nu intră în pachetele de
+vot și se măsoară prin egalitate textuală. Un revizor verifică fidelitatea cu sursa.
 Un fapt nou, o omisiune materială sau alterarea unui citat respinge cazul.
 
 Pe registru, raportează numărul cazurilor, fidelitatea, voturile și egalitățile.

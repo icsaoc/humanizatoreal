@@ -8,7 +8,7 @@ type: software
 authors:
   - name: XAOC
     email: iam@xaoc.bio
-version: 2.0.0
+version: 2.1.0
 date-released: 2026-11-03
 license: MIT
 repository-code: "https://github.com/icsaoc/humanizatoreal"

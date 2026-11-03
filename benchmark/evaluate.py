@@ -7,6 +7,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+CONTROL = "Control curat"
 
 
 def cases():
@@ -21,6 +22,10 @@ def cases():
                 raise ValueError(f"Duplicate case: {case}")
             rows[case] = (register, before, reference, invariant)
     return rows
+
+
+def voted(dataset):
+    return {case: row for case, row in dataset.items() if row[3] != CONTROL}
 
 
 def read_csv(path):
@@ -57,7 +62,7 @@ def prepare(args):
         raise ValueError("Every candidate must contain a nonempty text")
     args.out.mkdir()
     for reviewer in range(1, 4):
-        order = list(dataset)
+        order = list(voted(dataset))
         rng = random.Random(f"{args.seed}/{reviewer}")
         rng.shuffle(order)
         packet, key = [], []
@@ -94,7 +99,7 @@ def score(args):
     report = defaultdict(Counter)
     fidelity = indexed(args.out / "fidelity.csv", dataset)
     for case, row in fidelity.items():
-        register, before, _, _ = dataset[case]
+        register, before, _, invariant = dataset[case]
         stats = report[register]
         if row["fidelity"] not in {"pass", "fail"}:
             raise ValueError(f"{case}: fidelity must be pass or fail")
@@ -103,15 +108,16 @@ def score(args):
             raise ValueError(f"{case}: pattern counts must be nonnegative")
         stats["cases"] += 1
         stats["fidelity_pass"] += row["fidelity"] == "pass"
-        stats["clean_controls_unchanged"] += case in {"A3", "L3"} and row["candidate"] == before
+        stats["clean_controls"] += invariant == CONTROL
+        stats["clean_controls_unchanged"] += invariant == CONTROL and row["candidate"] == before
         if row["fidelity"] == "fail":
             stats["rejected"] += 1
             continue
         stats["before_patterns"] += counts[0]
         stats["after_patterns"] += counts[1]
     for reviewer in range(1, 4):
-        packet = indexed(args.out / f"review-{reviewer}.csv", dataset)
-        key = indexed(args.out / f"key-{reviewer}.csv", dataset)
+        packet = indexed(args.out / f"review-{reviewer}.csv", voted(dataset))
+        key = indexed(args.out / f"key-{reviewer}.csv", voted(dataset))
         for case, row in packet.items():
             side = key[case]["candidate"]
             if side not in {"A", "B"}:

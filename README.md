@@ -7,7 +7,7 @@
 Curăță tiparele de scriere AI și ajustează ritmul. Inventarul lexical rămâne inactiv până la aprobarea independentă pe sens.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](CHANGELOG.md)
 [![Lexicon](https://img.shields.io/badge/inventar-154%20r%C3%A2nduri-orange.svg)](references/lexicon-subset.md)
 [![Skill](https://img.shields.io/badge/type-Agent%20Skill-purple.svg)](SKILL.md)
 
@@ -32,10 +32,10 @@ Primește un text care „miroase a AI” și îl întoarce uman: fără fluff, 
 
 ## Instalare
 
-Comanda devine utilizabilă după publicarea tagului. Pentru descoperirea skill-urilor în Codex, vezi [documentația oficială](https://learn.chatgpt.com/docs/build-skills).
+Suport oficial: Claude Code. Alți agenți rămân netestați. Dacă `~/.claude/skills/omenizator` există deja, mută-l întâi. Vezi [documentația despre skills](https://code.claude.com/docs/en/skills).
 
 ```bash
-git clone --branch v2.0.0 https://github.com/icsaoc/humanizatoreal.git "$HOME/.agents/skills/omenizator"
+git clone --branch v2.1.0 https://github.com/icsaoc/humanizatoreal.git "$HOME/.claude/skills/omenizator"
 ```
 
 ## Utilizare
@@ -56,7 +56,7 @@ Dacă ceri `stil=admin`, skill-ul explică indisponibilitatea stratului înainte
 
 ## Moduri
 
-| Mod | Comportament în 2.0.0 | Intrări lexicale eligibile |
+| Mod | Comportament actual | Intrări lexicale eligibile |
 |---|---|---|
 | Literar implicit sau istoric la cerere | Curățarea tiparelor și ritm adaptat | 0 |
 | Stradal (`--argou`) | Inactiv. Compilație de internet fără intrări aprobate | 0 |
@@ -71,15 +71,20 @@ Pragul se aplică după activarea unei perechi. În starea actuală nu se aplic�
 
 ```
 humanizatoreal/
-├─ SKILL.md                 # procedura + YAML frontmatter (v2.0.0)
+├─ SKILL.md                 # procedura + YAML frontmatter (v2.1.0)
 ├─ README.md
 ├─ LICENSE · NOTICE · AUTHORS · CITATION.cff
 ├─ CHANGELOG.md · CONTRIBUTING.md
+├─ .github/workflows/check.yml
+├─ scripts/
+│  └─ check_release.py      # poarta de coerență înainte de release
 ├─ benchmark/               # pregătire și scor A/B
 │  ├─ README.md
-│  └─ evaluate.py
-├─ tests/                   # teste benchmark
-│  └─ test_evaluate.py
+│  ├─ evaluate.py
+│  └─ perechi-sens.md       # regresie pentru modalitate
+├─ tests/
+│  ├─ test_evaluate.py
+│  └─ test_check_release.py
 ├─ references/
 │  ├─ tipare.md             # 29 tipare AI
 │  ├─ lexicon-subset.md     # Master Index v3.1.0 (canonic)

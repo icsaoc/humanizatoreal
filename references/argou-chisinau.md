@@ -6,7 +6,7 @@ insultele țintite, epitetele discriminatorii și amenințările din completări
 agentului. Vulgaritatea nețintită și conținutul sexual marcat ⚠ cer confirmare explicită separată, pe lângă atestare. Păstrează citatele
 exacte din input.
 
-# Inventar de argou chișinăuian — inactiv în 2.0.0
+# Inventar de argou chișinăuian — inactiv
 
 ⚠ semnalează conținut sensibil pentru revizuire. Se aplică filtrul de mai sus.
 

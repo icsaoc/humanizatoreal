@@ -22,7 +22,7 @@ scopul — nu cuvintele-titlu sau sensurile ca fapte lexicale.
 - TV8 și PRO TV Chișinău. Vezi [registrul cu locatori](corpus-contemporan.md).
 
 ## D · Mod stradal
-- `argou-chisinau.md`: compilație de internet, **sursă neserioasă**, inventar inactiv în 2.0.0, fără intrări aprobate.
+- `argou-chisinau.md`: compilație de internet, **sursă neserioasă**, inventar inactiv, fără intrări aprobate.
 
 ## Notă critică
 DMR e o sursă controversată (mulți lingviști îl văd ca lexicon de arhaisme și
@@ -30,4 +30,4 @@ regionalisme ale graiului moldovenesc, nu limbă separată). Pentru skill contea
 lexicul și tonul, nu teza politică.
 
 ## Inventar administrativ
-- `admin-stil.md`: reformulări fără dovezi de uz documentate, inactive în 2.0.0. La `stil=admin`, anunță indisponibilitatea înainte de a oferi curățarea de bază.
+- `admin-stil.md`: reformulări fără dovezi de uz documentate, inactive. La `stil=admin`, anunță indisponibilitatea înainte de a oferi curățarea de bază.

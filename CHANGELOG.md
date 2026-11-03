@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented here.
 
+## [2.1.0] - 2026-11-03
+
+- Suportul oficial și calea de instalare trec pe Claude Code.
+- Regula de modalitate: posibilitatea, obligația, condiția și negația rămân când fac parte din sens. Catalog 1.0.1, remediul tiparului 2.
+- Controalele curate ies din pachetele de vot.
+- Poartă de coerență înainte de release, în `scripts/check_release.py` și GitHub Actions.
+
 ## [2.0.0] - 2026-11-03
 
 - Cifra istorică «~280» nu este reconciliată cu cele 154 de rânduri publice. Afirmația «regionalisme vii» din istoricul inventarului nu este susținută de atestări documentate.

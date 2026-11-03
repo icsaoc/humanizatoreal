@@ -14,6 +14,8 @@ locator. Paraphrase the usage note. Argot follows the filter in its inventory.
 ## Commits
 - Sign your commits (`git commit -S`).
 - Use Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`).
+- Before opening a PR, run `python scripts/check_release.py` and
+  `python -m unittest discover -s tests`.
 
 ## Review loop
 

@@ -1,4 +1,4 @@
-# Inventar de reformulări administrative — inactiv în 2.0.0
+# Inventar de reformulări administrative — inactiv
 
 > Nu sunt documentate dovezi de uz pentru reformulările de mai jos. Activarea cere dovezi pe sens și aprobarea unui revizor independent, la același standard ca lexicul.
 > La cererea `stil=admin`, explică indisponibilitatea înainte de a oferi curățarea stilistică de bază.
@@ -57,4 +57,4 @@
 5. Subiect explicit: cine face ce (echipa, banca, SIA)
 
 ## Când NU aplici
-- Inventarul rămâne inactiv în 2.0.0, inclusiv la cererea `stil=admin`.
+- Inventarul rămâne inactiv, inclusiv la cererea `stil=admin`.

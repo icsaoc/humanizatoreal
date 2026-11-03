@@ -6,7 +6,7 @@ description: >-
   livrează curățare stilistică de bază, fără adaptare regională validată.
   Opțiunile --argou și stil=admin sunt inactive.
 license: MIT
-version: 2.0.0
+version: 2.1.0
 author: XAOC
 contact: iam@xaoc.bio
 repository: https://github.com/icsaoc/humanizatoreal
@@ -21,10 +21,10 @@ created: 2026
 2. **Detectează tiparele de scriere AI** (`references/tipare.md`, 29 semne) — numerotează fiecare tipar găsit.
 3. **Rescrie:**
    - elimină tiparele găsite; transformă construcțiile pasive/vagi în active cu subiect explicit („cine face acțiunea?").
-   - **Substituții lexicale (niciuna activă în 2.0.0):** după aprobarea independentă pe sens, caută **declanșatoarele RO comune** din `references/lexicon-subset.md` (Master Index v3.1.0). Aplică filtrul de dovezi din `references/provenienta-lexicala.md`. Dacă ID-ul este activ în registru și există potrivire naturală de sens și registru → înlocuiește cu termenul md — **doar** respectând Pragul de densitate de mai jos.
+   - **Substituții lexicale (niciuna activă):** după aprobarea independentă pe sens, caută **declanșatoarele RO comune** din `references/lexicon-subset.md` (Master Index v3.1.0). Aplică filtrul de dovezi din `references/provenienta-lexicala.md`. Dacă ID-ul este activ în registru și există potrivire naturală de sens și registru → înlocuiește cu termenul md — **doar** respectând Pragul de densitate de mai jos.
    - dacă **niciun** declanșator nu se potrivește → **nu inventa** termeni DMR și **nu forța** cei existenți pe sensuri nepotrivite. Continuă doar cu eliminarea tiparelor AI + ritm natural.
    - păstrează sensul original 100% — nu inventa, nu adăuga fapte noi, nu exagera.
-   - ton: direct, concis, fără fluff, fără hedging.
+   - ton: direct, concis, fără fluff. Taie hedging-ul stilistic, dar păstrează modalitatea care face parte din sens: posibilitatea, obligația, condiția și negația („poate respinge” nu devine „respinge”).
    - ritm natural: propoziții de lungimi variate.
 4. **Aplică modul** — vezi Moduri mai jos.
 5. **Verifică și livrează obligatoriu tabelul de audit**.
@@ -38,7 +38,7 @@ created: 2026
 - Dacă textul nu are tipare AI detectabile, nu forța rescrierea — raportează „zero tipare găsite" și lasă textul neatins.
 
 ## Prag de densitate (după activarea unei perechi)
-- Pragul se aplică doar după activarea independentă a unei perechi. În 2.0.0 nu se aplică substituții.
+- Pragul se aplică doar după activarea independentă a unei perechi. Acum nu se aplică substituții.
 - Prag orientativ: max. 1 termen DMR la ~150 cuvinte de output.
 - Dacă niciun termen din `lexicon-subset.md` nu are potrivire naturală, nu injecta nimic — rezultat valid.
 

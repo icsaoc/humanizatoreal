@@ -19,6 +19,9 @@ se completează A, B sau tie. Revizorul completează fidelity cu pass sau fail
 și numără aparițiile tiparelor înainte și după. Scorul raportează separat
 fidelitatea, controalele curate, voturile și reducerea tiparelor. Nu transforma
 o rulare pilot într-o afirmație generală despre registru sau despre autorat AI.
+Controalele curate nu apar în review-N.csv. Scorul le raportează prin
+clean_controls și clean_controls_unchanged. Perechile pentru modalitate sunt în
+[perechi-sens.md](perechi-sens.md).
 
 CSV-urile folosesc UTF-8 cu BOM. La salvare în Excel alege CSV UTF-8.
 Sunt acceptate virgula și punctul și virgula. Cazurile respinse sunt raportate

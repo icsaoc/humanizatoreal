@@ -9,6 +9,8 @@ from pathlib import Path
 
 SCRIPT = Path(__file__).resolve().parents[1] / "benchmark/evaluate.py"
 CASES = runpy.run_path(str(SCRIPT))["cases"]()
+CONTROLS = {case for case, row in CASES.items() if row[3] == "Control curat"}
+VOTED = set(CASES) - CONTROLS
 
 
 class BenchmarkTest(unittest.TestCase):
@@ -17,7 +19,7 @@ class BenchmarkTest(unittest.TestCase):
         self.addCleanup(temp.cleanup)
         root = Path(temp.name)
         self.out = root / "review"
-        run = self.run = root / "run.json"
+        run = self.run_file = root / "run.json"
         run.write_text(json.dumps({
             "model": "fixture", "skill": "test", "catalog": "test", "parameters": {},
             "candidates": {key: case[2] for key, case in CASES.items()},
@@ -49,13 +51,22 @@ class BenchmarkTest(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         return json.loads(result.stdout)
 
+    def rows(self, name):
+        with (self.out / name).open(encoding="utf-8-sig", newline="") as stream:
+            return list(csv.DictReader(stream))
+
+    def sides(self):
+        """Count, per register, how many keys place the candidate on side A."""
+        total = {"Administrativ": 0, "Literar": 0}
+        for reviewer in range(1, 4):
+            for row in self.rows(f"key-{reviewer}.csv"):
+                total[CASES[row["id"]][0]] += row["candidate"] == "A"
+        return total
+
     def test_prepare_score_and_bom(self):
         for path in self.out.glob("*.csv"):
             self.assertTrue(path.read_bytes().startswith(bytes.fromhex("EFBBBF")))
-        expected = {
-            "Administrativ": (5, 4),
-            "Literar": (5, 4),
-        }
+        on_a = self.sides()
         for reviewer in range(1, 4):
             with (self.out / f"key-{reviewer}.csv").open(encoding="utf-8-sig") as stream:
                 key = {row["id"]: row["candidate"] for row in csv.DictReader(stream)}
@@ -68,15 +79,55 @@ class BenchmarkTest(unittest.TestCase):
                     self.assertEqual(row["B" if side == "A" else "A"], CASES[case][1])
         self.complete()
         for register, stats in self.score().items():
-            a, b = expected[register]
+            a, b = on_a[register], 6 - on_a[register]
             self.assertEqual(stats.get("naturalness_candidate", 0), a)
             self.assertEqual(stats.get("naturalness_original", 0), b)
             self.assertEqual(stats.get("register_fit_candidate", 0), b)
             self.assertEqual(stats.get("register_fit_original", 0), a)
+            self.assertEqual(stats["clean_controls"], 1)
             self.assertEqual(stats["clean_controls_unchanged"], 1)
             self.assertEqual(stats["cases"], 3)
+            self.assertEqual(stats["fidelity_pass"], 3)
             self.assertEqual(stats["rejected"], 0)
             self.assertEqual(stats["pattern_reduction"], 1)
+
+    def test_controls_excluded_from_votes(self):
+        for reviewer in range(1, 4):
+            self.assertEqual({row["id"] for row in self.rows(f"review-{reviewer}.csv")}, VOTED)
+            self.assertEqual({row["id"] for row in self.rows(f"key-{reviewer}.csv")}, VOTED)
+        self.assertEqual({row["id"] for row in self.rows("fidelity.csv")}, set(CASES))
+
+    def test_fidelity_sheet_content(self):
+        for row in self.rows("fidelity.csv"):
+            register, before, candidate, invariant = CASES[row["id"]]
+            self.assertEqual(row["before"], before)
+            self.assertEqual(row["candidate"], candidate)
+            self.assertEqual(row["invariant"], invariant)
+
+    def test_fidelity_pass_counts_only_passes(self):
+        self.complete()
+        self.rewrite_csv("fidelity.csv", lambda rows: next(
+            row for row in rows if row["id"] == "A1").update(fidelity="fail"))
+        stats = self.score()["Administrativ"]
+        self.assertEqual((stats["cases"], stats["fidelity_pass"], stats["rejected"]), (3, 2, 1))
+
+    def test_invalid_fidelity_value(self):
+        self.complete()
+        self.rewrite_csv("fidelity.csv", lambda rows: rows[0].update(fidelity="maybe"))
+        self.assert_score_error("fidelity must be pass or fail")
+
+    def test_changed_control_not_counted(self):
+        self.complete()
+        self.rewrite_csv("fidelity.csv", lambda rows: next(
+            row for row in rows if row["id"] in CONTROLS
+            and CASES[row["id"]][0] == "Administrativ").update(candidate="Alt text."))
+        stats = self.score()["Administrativ"]
+        self.assertEqual((stats["clean_controls"], stats["clean_controls_unchanged"]), (1, 0))
+
+    def test_missing_key_row(self):
+        self.complete()
+        self.rewrite_csv("key-1.csv", lambda rows: rows.pop())
+        self.assert_score_error("missing, unknown or duplicate case ID")
 
     def test_semicolon(self):
         self.complete(delimiter=";")
@@ -119,16 +170,16 @@ class BenchmarkTest(unittest.TestCase):
             next(row for row in rows if row["id"] == "A1").update(
                 naturalness="tie", register_fit="tie")
 
-        with (self.out / "key-1.csv").open(encoding="utf-8-sig") as stream:
-            side = next(row["candidate"] for row in csv.DictReader(stream)
-                        if row["id"] == "A1")
-        self.assertEqual(side, "B")
+        side = next(row["candidate"] for row in self.rows("key-1.csv") if row["id"] == "A1")
+        a = self.sides()["Administrativ"]
+        natural = (a - (side == "A"), 6 - a - (side == "B"))
+        fit = (6 - a - (side == "B"), a - (side == "A"))
         self.rewrite_csv("review-1.csv", tie)
         stats = self.score()["Administrativ"]
-        self.assertEqual(tuple(stats[f"naturalness_{k}"] for k in
-                               ("tie", "candidate", "original")), (1, 5, 3))
-        self.assertEqual(tuple(stats[f"register_fit_{k}"] for k in
-                               ("tie", "candidate", "original")), (1, 3, 5))
+        self.assertEqual(tuple(stats.get(f"naturalness_{k}", 0) for k in
+                               ("tie", "candidate", "original")), (1, *natural))
+        self.assertEqual(tuple(stats.get(f"register_fit_{k}", 0) for k in
+                               ("tie", "candidate", "original")), (1, *fit))
 
     def assert_score_error(self, message):
         result = self.invoke("score", self.out)
@@ -161,11 +212,11 @@ class BenchmarkTest(unittest.TestCase):
         self.assert_score_error("invalid key")
 
     def assert_prepare_error(self, transform, message):
-        run = json.loads(self.run.read_text(encoding="utf-8"))
+        run = json.loads(self.run_file.read_text(encoding="utf-8"))
         transform(run)
-        self.run.write_text(json.dumps(run), encoding="utf-8")
+        self.run_file.write_text(json.dumps(run), encoding="utf-8")
         out = self.out.with_name("invalid")
-        result = self.invoke("prepare", self.run, out, "--seed", 104)
+        result = self.invoke("prepare", self.run_file, out, "--seed", 104)
         self.assertEqual(result.returncode, 2, result.stderr)
         self.assertIn(message, result.stderr)
         self.assertFalse(out.exists())
